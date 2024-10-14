@@ -4,19 +4,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Patient, Doctor
 from .serializers import PatientSerializer, DoctorSerializer
+from rest_framework import viewsets
 
-class PatientRegistrationView(APIView):
-    def post(self, request):
-        serializer = PatientSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class PatientRegistrationView(viewsets.ModelViewSet):
+    serializer_class = PatientSerializer
+    queryset = Patient.objects.all()
 
-class DoctorRegistrationView(APIView):
-    def post(self, request):
-        serializer = DoctorSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class DoctorRegistrationView(viewsets.ModelViewSet):
+    serializer_class = DoctorSerializer
+    queryset = Doctor.objects.all()
+    

@@ -1,8 +1,12 @@
 # urls.py
-from django.urls import path
+from django.urls import path, include
 from .views import PatientRegistrationView, DoctorRegistrationView
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('patient', PatientRegistrationView)
+router.register('doctor', DoctorRegistrationView)
 
 urlpatterns = [
-    path('register/patient/', PatientRegistrationView.as_view(), name='register_patient'),
-    path('register/doctor/', DoctorRegistrationView.as_view(), name='register_doctor'),
+    path('', include(router.urls)),
 ]
