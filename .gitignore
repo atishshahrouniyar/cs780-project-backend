@@ -24,9 +24,7 @@ build/
 db.sqlite3
 /static/
 media/
-# Ignore migrations
-*/migrations/*.py
-*/migrations/*.pyc
+
 
 # VS Code settings
 .vscode/
