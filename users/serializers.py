@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.hashers import make_password
-from .models import Patient, Doctor
+from .models import Patient, Doctor, OrganDonor
 
 
 class PatientSerializer(serializers.ModelSerializer):
@@ -41,3 +41,9 @@ class DoctorSerializer(serializers.ModelSerializer):
         if "password" in validated_data:
             validated_data["password"] = make_password(validated_data["password"])
         return super().update(instance, validated_data)
+
+
+class OrganDonorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = OrganDonor
+        fields = "__all__"
