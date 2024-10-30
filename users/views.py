@@ -20,3 +20,5 @@ class DoctorRegistrationView(viewsets.ModelViewSet):
 class OrganDonorView(viewsets.ModelViewSet):
     serializer_class = OrganDonorSerializer
     queryset = OrganDonor.objects.all()
+    filterset_fields = ["organ", "availability_status"]
+    search_fields = ["organ"]
