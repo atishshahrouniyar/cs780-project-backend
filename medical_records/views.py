@@ -7,3 +7,4 @@ from .models import MedicalRecord
 class MedicalRecordViewSet(viewsets.ModelViewSet):
     serializer_class = MedicalRecordSerializer
     queryset = MedicalRecord.objects.all()
+    filterset_fields = ["patient", "appointment"]
